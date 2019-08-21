@@ -18,6 +18,8 @@
 		1EF15FB82309990F008A0088 /* CurrencyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF15FB72309990F008A0088 /* CurrencyCollectionViewCell.swift */; };
 		1EF15FBB230ACFB7008A0088 /* CurrencyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF15FBA230ACFB7008A0088 /* CurrencyViewModel.swift */; };
 		1EF15FBE230C4894008A0088 /* ExchangedCurrency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF15FBD230C4894008A0088 /* ExchangedCurrency.swift */; };
+		1EF15FC0230D8C34008A0088 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF15FBF230D8C34008A0088 /* CurrencyRepository.swift */; };
+		1EF15FE0230D8D22008A0088 /* APICurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EF15FDF230D8D22008A0088 /* APICurrencyRepository.swift */; };
 		972EDB9B62AD54841245B5C9 /* Pods_GetCurrencyTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24BE5691AB1ED5E0666D0EF1 /* Pods_GetCurrencyTests.framework */; };
 		B152FE86919EB64E9933093C /* Pods_GetCurrency.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04270FE8E5D7E1867C377B46 /* Pods_GetCurrency.framework */; };
 		D0A6311D82E2B65CE8189603 /* Pods_GetCurrencyUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2D4AB83A922A481FD1AFAE8 /* Pods_GetCurrencyUITests.framework */; };
@@ -59,6 +61,8 @@
 		1EF15FB72309990F008A0088 /* CurrencyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCollectionViewCell.swift; sourceTree = "<group>"; };
 		1EF15FBA230ACFB7008A0088 /* CurrencyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyViewModel.swift; sourceTree = "<group>"; };
 		1EF15FBD230C4894008A0088 /* ExchangedCurrency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangedCurrency.swift; sourceTree = "<group>"; };
+		1EF15FBF230D8C34008A0088 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
+		1EF15FDF230D8D22008A0088 /* APICurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICurrencyRepository.swift; sourceTree = "<group>"; };
 		24BE5691AB1ED5E0666D0EF1 /* Pods_GetCurrencyTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GetCurrencyTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EB841DFAC0FAAD8C67141AA /* Pods-GetCurrencyTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetCurrencyTests.release.xcconfig"; path = "Target Support Files/Pods-GetCurrencyTests/Pods-GetCurrencyTests.release.xcconfig"; sourceTree = "<group>"; };
 		B1881528F6C2E53431059996 /* Pods-GetCurrencyTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GetCurrencyTests.debug.xcconfig"; path = "Target Support Files/Pods-GetCurrencyTests/Pods-GetCurrencyTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -126,6 +130,7 @@
 				1EF15FB423098205008A0088 /* View */,
 				1EF15FB9230ACFA6008A0088 /* ViewModel */,
 				1EF15FBC230C4882008A0088 /* Model */,
+				1EF15FDE230D8D0D008A0088 /* Data */,
 				1E8E1CD42309542700E8A8B4 /* Main.storyboard */,
 				1E8E1CD72309542800E8A8B4 /* Assets.xcassets */,
 				1E8E1CD92309542800E8A8B4 /* LaunchScreen.storyboard */,
@@ -174,10 +179,19 @@
 			isa = PBXGroup;
 			children = (
 				1EF15FBD230C4894008A0088 /* ExchangedCurrency.swift */,
+				1EF15FBF230D8C34008A0088 /* CurrencyRepository.swift */,
 			);
 			name = Model;
 			path = GetCurrency/Model;
 			sourceTree = SOURCE_ROOT;
+		};
+		1EF15FDE230D8D0D008A0088 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				1EF15FDF230D8D22008A0088 /* APICurrencyRepository.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
 		};
 		BA4DE02AAE27E7E412874E58 /* Frameworks */ = {
 			isa = PBXGroup;
@@ -426,6 +440,8 @@
 				1EF15FBE230C4894008A0088 /* ExchangedCurrency.swift in Sources */,
 				1E8E1CD32309542700E8A8B4 /* CurrencyViewController.swift in Sources */,
 				1EF15FBB230ACFB7008A0088 /* CurrencyViewModel.swift in Sources */,
+				1EF15FE0230D8D22008A0088 /* APICurrencyRepository.swift in Sources */,
+				1EF15FC0230D8C34008A0088 /* CurrencyRepository.swift in Sources */,
 				1E8E1CD12309542700E8A8B4 /* AppDelegate.swift in Sources */,
 				1EF15FB82309990F008A0088 /* CurrencyCollectionViewCell.swift in Sources */,
 				1EF15FB623098246008A0088 /* CurrencyPickerViewController.swift in Sources */,

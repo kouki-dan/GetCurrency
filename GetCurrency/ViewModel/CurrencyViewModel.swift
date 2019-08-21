@@ -43,7 +43,11 @@ class CurrencyViewModel: CurrencyViewModelType, CurrencyViewModelInputs, Currenc
     // MARK: - Outputs
     let currencies: Driver<[ExchangedCurrency]>
     let currencyButtonString: Driver<String>
-    var selectableCurrencyList: [String]
+    var selectableCurrencyList = [String]()
+
+    // MARK: - Privates
+    private let repository: CurrencyRepository = CachedAPICurrencyRepository()
+    private let disposeBag = DisposeBag()
 
     init() {
         currencies = Observable.combineLatest(
@@ -52,35 +56,18 @@ class CurrencyViewModel: CurrencyViewModelType, CurrencyViewModelInputs, Currenc
             },
             currencyChanged
         )
-        .map { amount, currency in
-            // TODO: Use API value or cached value from disk
-            return [
-                ExchangedCurrency(
-                    source: "JPY",
-                    destination: "USD",
-                    sourceAmount: amount,
-                    destinationUnitPrice: 106.301942),
-                ExchangedCurrency(
-                    source: "JPY",
-                    destination: "USD",
-                    sourceAmount: amount,
-                    destinationUnitPrice: 106.301942),
-                ExchangedCurrency(
-                    source: "JPY",
-                    destination: "USD",
-                    sourceAmount: amount,
-                    destinationUnitPrice: 106.301942),
-            ]
+        .flatMap { [repository] amount, currency in
+            return repository.getExchangedCurrencies(sourceCurrency: currency, sourceAmount: amount)
         }.asDriver(onErrorDriveWith: .empty())
         currencyButtonString = currencyChanged
             .map {
                 "\($0) ▼"
             }
             .asDriver(onErrorDriveWith: .empty())
-        // TODO: Use API value or cached value from disk
-        selectableCurrencyList = [
-            "USD",
-            "JPY"
-        ]
+        repository.getCurrencyList()
+            .subscribe(onNext: { [weak self] in
+                self?.selectableCurrencyList = $0
+            })
+            .disposed(by: disposeBag)
     }
 }
