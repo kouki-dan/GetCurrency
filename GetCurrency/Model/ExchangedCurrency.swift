@@ -8,12 +8,16 @@
 
 import Foundation
 
-struct ExchangedCurrency {
+struct ExchangedCurrency: Comparable {
     let source: String
     let destination: String
     let sourceAmount: Double
     let destinationUnitPrice: Double
     var destinationAmount: Double {
         return sourceAmount * destinationUnitPrice
+    }
+
+    static func < (lhs: ExchangedCurrency, rhs: ExchangedCurrency) -> Bool {
+        return lhs.source + lhs.destination < rhs.source + rhs.destination
     }
 }
