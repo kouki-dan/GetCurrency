@@ -17,7 +17,9 @@ class CurrencyPickerViewController: UIViewController {
 
     @IBAction func doneButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
-        currencySelected(currencies[pickerView.selectedRow(inComponent: 0)])
+        if !currencies.isEmpty {
+            currencySelected(currencies[pickerView.selectedRow(inComponent: 0)])
+        }
     }
 
     @IBAction func backgroundTapped(_ sender: UITapGestureRecognizer) {
