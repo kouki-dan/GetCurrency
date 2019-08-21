@@ -5,7 +5,11 @@ source 'https://cdn.cocoapods.org/'
 target 'GetCurrency' do
   use_frameworks!
 
-  # Pods for GetCurrency
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxOptional'
+  pod 'RxDataSources'
+
 
   target 'GetCurrencyTests' do
     inherit! :search_paths

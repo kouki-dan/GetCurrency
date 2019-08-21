@@ -7,6 +7,10 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import RxDataSources
+import RxOptional
 
 class CurrencyViewController: UIViewController {
 
@@ -14,8 +18,25 @@ class CurrencyViewController: UIViewController {
     @IBOutlet private var selectCurrencyButton: UIButton!
     @IBOutlet private var amountTextField: UITextField!
 
+    private let viewModel: CurrencyViewModelType = CurrencyViewModel()
+    private let disposeBag = DisposeBag()
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        amountTextField.rx.text
+            .filterNil()
+            .bind(to: viewModel.inputs.amountChanged)
+            .disposed(by: disposeBag)
+
+        viewModel.outputs.currencies
+            .drive(collectionView.rx.items(cellIdentifier: "Currency", cellType: CurrencyCollectionViewCell.self)) { _, model, cell in
+                cell.render(currency: model)
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.outputs.currencyButtonString
+            .drive(selectCurrencyButton.rx.title())
+            .disposed(by: disposeBag)
     }
 
     override func viewDidLayoutSubviews() {
@@ -30,25 +51,11 @@ class CurrencyViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SelectCurrency" {
             let destination = segue.destination as! CurrencyPickerViewController
-            destination.currencies = [ // TODO: use API value
-                "JPY",
-                "USD"
-            ]
+            
+            destination.currencies = viewModel.outputs.selectableCurrencyList
             destination.currencySelected = { [weak self] selectedCurrency in
-                self?.selectCurrencyButton.setTitle("\(selectedCurrency) ▼", for: .normal)
-                // TODO: fetch currencies from API
+                self?.viewModel.inputs.currencyChanged.accept(selectedCurrency)
             }
         }
-    }
-}
-
-extension CurrencyViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Currency", for: indexPath) as! CurrencyCollectionViewCell
-        return cell
     }
 }

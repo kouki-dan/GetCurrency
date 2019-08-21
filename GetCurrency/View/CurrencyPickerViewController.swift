@@ -11,10 +11,7 @@ import UIKit
 class CurrencyPickerViewController: UIViewController {
 
     var currencySelected: ((String) -> Void)!
-    var currencies = [
-        "USD",
-        "JPY"
-    ]
+    var currencies = [String]()
 
     @IBOutlet private var pickerView: UIPickerView!
 
