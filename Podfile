@@ -16,9 +16,6 @@ target 'GetCurrency' do
     # Pods for testing
   end
 
-  target 'GetCurrencyUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
+  target 'GetCurrencyUITests'
 
 end
