@@ -1,0 +1,18 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: macOS-10.14
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run tests
+      run: |
+        xcode-select -p
+        sudo xcode-select -s /Applications/Xcode_10.3.app
+        xcode-select -p
+        bundle install
+        bundle exec fastlane test
